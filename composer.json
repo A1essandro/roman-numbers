@@ -1,0 +1,12 @@
+{
+    "name": "a1essandro/roman-numbers",
+    "description": "Easy conversion int <-> roman numbers",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "A1essandro",
+            "email": "alexander.yermakov.1990@gmail.com"
+        }
+    ],
+    "require": {}
+}
