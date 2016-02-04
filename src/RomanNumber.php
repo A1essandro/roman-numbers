@@ -1,5 +1,7 @@
 <?php
 
+namespace NumberFormatter;
+
 class RomanNumber
 {
 
@@ -16,7 +18,7 @@ class RomanNumber
             100  => 'C',
             400  => 'CD',
             500  => 'D',
-            900  => 'DM',
+            900  => 'CM',
             1000 => 'M'
         );
 
