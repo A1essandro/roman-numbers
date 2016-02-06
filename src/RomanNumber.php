@@ -2,6 +2,8 @@
 
 namespace NumberFormatter;
 
+use InvalidArgumentException;
+
 class RomanNumber
 {
 
@@ -38,11 +40,17 @@ class RomanNumber
     public function __construct($number)
     {
         if (is_string($number)) {
+            if (!preg_match('/^(M{0,3})(D?C{0,3}|C[DM])(L?X{0,3}|X[LC])(V?I{0,3}|I[VX])$/', $number)) {
+                throw new InvalidStringException(sprintf("String \"%s\" is not valid roman number", $number));
+            }
             $this->parseRoman($number);
-        }
-
-        if (is_int($number)) {
+        } elseif (is_int($number)) {
+            if($number < 0) {
+                throw new InvalidIntException(sprintf("Int argument mus be >0", $number));
+            }
             $this->parseInt($number);
+        } else {
+            throw new InvalidArgumentException(sprintf("Argument must be string or int, %s given", gettype($number)));
         }
     }
 
@@ -55,6 +63,16 @@ class RomanNumber
     public function __toString()
     {
         return $this->stringData;
+    }
+
+    /**
+     * Get roman number
+     *
+     * @return string
+     */
+    public function toString()
+    {
+        return $this->__toString();
     }
 
     /**

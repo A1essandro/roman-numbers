@@ -19,8 +19,10 @@ composer require a1essandro/roman-numbers
 
 ##Usage
 
+###Basic
 ```php
-use NumberFormatter;
+
+use NumberFormatter\RomanNumber;
 
 $romanFromInt = new RomanNumber(12);
 echo (string)$romanFromInt; // XII
@@ -29,4 +31,22 @@ echo $romanFromInt->toInt(); // 12
 $romanFromRomat = new RomanNumber('XIX');
 echo (string)$romanFromRoman; // XIX
 echo $romanFromRoman->toInt(); // 19
+
 ```
+
+###Validation
+
+```php
+
+try {
+    new RomanNumber($someVariable);
+} catch (InvalidStringException $e) {
+    //if $someVariable is invalid string (not correct roman number)
+} catch (InvalidIntException $e) {
+    //if $someVariable is invalid int (for example -1)
+} catch (InvalidArgumentException $e) {
+    //if $someVariable is not int or string (invalid type)
+}
+
+```
+
