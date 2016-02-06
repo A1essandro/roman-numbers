@@ -52,4 +52,10 @@ class RomanNumberTest extends PHPUnit_Framework_TestCase
         new RomanNumber($argument);
     }
 
+    public function testStringValidation()
+    {
+        $this->assertEquals(RomanNumber::isValidRomanNumber('XDI'), false);
+        $this->assertEquals(RomanNumber::isValidRomanNumber('XXIX'), true);
+    }
+
 }

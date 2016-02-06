@@ -48,5 +48,13 @@ try {
     //if $someVariable is not int or string (invalid type)
 }
 
+//Another way to check validity:
+
+$validRomanNumber = 'XXIX';
+RomanNumber::isValidRomanNumber($validRomanNumber); // true
+
+$invalidRomanNumber = 'XDX';
+RomanNumber::isValidRomanNumber($invalidRomanNumber); // false
+
 ```
 

@@ -40,7 +40,7 @@ class RomanNumber
     public function __construct($number)
     {
         if (is_string($number)) {
-            if (!preg_match('/^(M{0,3})(D?C{0,3}|C[DM])(L?X{0,3}|X[LC])(V?I{0,3}|I[VX])$/', $number)) {
+            if (!static::isValidRomanNumber($number)) {
                 throw new InvalidStringException(sprintf("String \"%s\" is not valid roman number", $number));
             }
             $this->parseRoman($number);
@@ -83,6 +83,16 @@ class RomanNumber
     public function toInt()
     {
         return $this->intData;
+    }
+
+    /**
+     * @param string $romanNumber
+     *
+     * @return bool
+     */
+    public static function isValidRomanNumber($romanNumber)
+    {
+        return (bool)preg_match('/^(M{0,3})(D?C{0,3}|C[DM])(L?X{0,3}|X[LC])(V?I{0,3}|I[VX])$/', (string)$romanNumber);
     }
 
     private function parseRoman($number)
