@@ -1,6 +1,7 @@
 {
     "name": "a1essandro/roman-numbers",
     "description": "Easy conversion int <-> roman numbers",
+    "keywords": ["roman number", "roman"],
     "license": "MIT",
     "authors": [
         {

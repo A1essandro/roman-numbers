@@ -7,13 +7,11 @@ class RomanNumberTest extends PHPUnit_Framework_TestCase
 
     public function testFormatterEquals()
     {
-        $i = 1;
-        while ($i <= 2000) {
+        for ($i = 1; $i <= 2000; $i++) {
             $romanFromInt = new RomanNumber($i);
             $intFromRoman = new RomanNumber((string)$romanFromInt);
             $this->assertEquals($romanFromInt->toInt(), $intFromRoman->toInt());
-            $this->assertEquals((string)$romanFromInt, (string)$intFromRoman);
-            $i += 1;
+            $this->assertEquals($romanFromInt->toString(), (string)$intFromRoman);
         }
     }
 

@@ -7,7 +7,7 @@ use InvalidArgumentException;
 class RomanNumber
 {
 
-    private $ref
+    private $map
         = array(
             1    => 'I',
             4    => 'IV',
@@ -45,8 +45,8 @@ class RomanNumber
             }
             $this->parseRoman($number);
         } elseif (is_int($number)) {
-            if($number < 0) {
-                throw new InvalidIntException(sprintf("Int argument mus be >0", $number));
+            if($number < 0 || $number >= 4000) {
+                throw new InvalidIntException(sprintf("Int argument mus be between 0 and 4000", $number));
             }
             $this->parseInt($number);
         } else {
@@ -102,7 +102,7 @@ class RomanNumber
         $len = strlen($number);
         $this->intData = $next = 0;
         for ($i = $len - 1; $i >= 0; $i--) {
-            $currentInt = array_search($number[$i], $this->ref);
+            $currentInt = array_search($number[$i], $this->map);
             $module = $next > $currentInt ? -1 : 1;
             $this->intData += $module * $currentInt ?: 0;
             $next = $currentInt;
@@ -112,13 +112,9 @@ class RomanNumber
     private function parseInt($number)
     {
         $this->intData = $number;
-
-        $accords = $this->ref;
-        krsort($accords);
-
         $this->stringData = '';
 
-        foreach ($accords as $int => $roman) {
+        foreach (array_reverse($this->map, true) as $int => $roman) {
             $multiplier = floor($number / $int);
             $number = $number % $int;
             $this->stringData .= str_repeat($roman, $multiplier);
